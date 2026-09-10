@@ -20,6 +20,26 @@
   --stage-4: #56646C;
   --stage-5: #1E2B33;
 
+  /* Command bar: the one dark surface, used for the top bar only */
+  --bar: #1E2B33;
+  --bar-raised: #2B3A44;
+  --bar-ink: #FFFFFF;
+  --bar-muted: #C4CFD4;
+  --bar-rule: #46555E;
+  --bar-hover: #354650;
+
+  /* Stage ramp inverted for the dark bar: dim to bright, same order as the light ramp */
+  --bar-stage-1: #6E7F88;
+  --bar-stage-2: #8A9AA2;
+  --bar-stage-3: #A9B8BE;
+  --bar-stage-4: #CBD6DA;
+  --bar-stage-5: #FFFFFF;
+
+  /* Alternating table rows, kept close to sheet so it reads as rhythm not stripes */
+  --zebra: #FAFBFA;
+  --track: #EDF0F1;
+  --select-tint: #FCF3F6;
+
   --font: 'Archivo Variable', system-ui, sans-serif;
   --space-1: 4px;
   --space-2: 8px;

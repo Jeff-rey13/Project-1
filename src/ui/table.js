@@ -48,6 +48,12 @@ export function renderTable(state) {
     { key: 'file_format', label: 'Format', sortable: false },
   ]
 
+  // Leading rule column carries the survey-type colour down the table
+  const ruleTh = document.createElement('th')
+  ruleTh.className = 'table-header cell-rule'
+  ruleTh.setAttribute('aria-hidden', 'true')
+  headerRow.appendChild(ruleTh)
+
   for (const col of cols) {
     const th = document.createElement('th')
     th.className = 'table-header'
@@ -76,31 +82,27 @@ export function renderTable(state) {
     if (row.plan_id === state.selectedId) tr.classList.add('table-row-selected')
     tr.addEventListener('click', () => setSelected(row.plan_id))
 
+    const rule = document.createElement('td')
+    rule.className = 'table-cell cell-rule'
+    rule.style.backgroundColor = `var(${TYPE_VAR[row.survey_type]})`
+    tr.appendChild(rule)
+
     const cells = [
       { text: row.plan_id, cls: 'cell-plan', type: null },
       { text: TYPE_SHORT[row.survey_type] || row.survey_type, cls: 'cell-type', type: row.survey_type },
-      { text: row.town, cls: '', type: null },
-      { text: row.block, cls: '', type: null },
+      { text: row.town, cls: 'cell-town', type: null },
+      { text: row.block, cls: 'cell-block', type: null },
       { text: formatDate(row.survey_date), cls: 'cell-date', type: null },
-      { text: row.status, cls: '', type: null },
-      { text: row.file_format, cls: '', type: null },
+      { text: row.status, cls: 'cell-stage', type: null },
+      { text: row.file_format, cls: 'cell-format', type: null },
     ]
 
     for (const c of cells) {
       const td = document.createElement('td')
       td.className = 'table-cell'
       if (c.cls) td.classList.add(c.cls)
-
-      if (c.type) {
-        const swatch = document.createElement('span')
-        swatch.className = 'type-swatch-inline'
-        swatch.style.backgroundColor = `var(${TYPE_VAR[c.type]})`
-        td.appendChild(swatch)
-        const text = document.createTextNode(c.text)
-        td.appendChild(text)
-      } else {
-        td.textContent = c.text
-      }
+      td.textContent = c.text
+      if (c.type) td.style.color = `var(${TYPE_VAR[c.type]})`
       tr.appendChild(td)
     }
     tbody.appendChild(tr)

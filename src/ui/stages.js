@@ -37,9 +37,9 @@ export function renderStages(state) {
     label.className = 'stage-label'
     label.textContent = stage
 
-    station.appendChild(num)
     station.appendChild(dot)
     station.appendChild(label)
+    station.appendChild(num)
 
     station.addEventListener('click', () => {
       const next = isOn

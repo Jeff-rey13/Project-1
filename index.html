@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -9,6 +9,7 @@
   <body>
     <header class="header" id="header">
       <span class="wordmark">Plan Room</span>
+      <span class="header-rule"></span>
       <div class="search-wrap">
         <label for="search" class="sr-only">Search plans</label>
         <input
@@ -20,6 +21,9 @@
           autocomplete="off"
         />
       </div>
+      <section class="stages-bar" id="stages-bar" aria-label="Workflow stages"></section>
+      <div class="header-spacer"></div>
+      <div id="csv-wrap"></div>
     </header>
 
     <div class="app-layout">
@@ -33,7 +37,6 @@
 
       <main class="main-content" id="main-content">
         <div class="results-bar" id="results-bar"></div>
-        <section class="stages-bar" id="stages-bar" aria-label="Workflow stages"></section>
         <div class="map-container" id="map-wrap">
           <div id="map"></div>
         </div>

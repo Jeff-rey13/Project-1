@@ -1,7 +1,6 @@
 ﻿import { setServerFilter, setClientFilter, clearAll, hasActiveFilters, getAllTowns, getTownCounts } from '../main.js'
 
 const TYPES = ['Engineering Topo', '3D LiDAR Interior', 'Recess Area']
-const TYPE_SHORT = { 'Engineering Topo': 'Topo', '3D LiDAR Interior': 'LiDAR', 'Recess Area': 'Recess' }
 const TYPE_VAR = { 'Engineering Topo': '--topo', '3D LiDAR Interior': '--lidar', 'Recess Area': '--recess' }
 
 let initialized = false
@@ -33,7 +32,8 @@ function renderTypeChips() {
     swatch.style.backgroundColor = `var(${TYPE_VAR[t]})`
     btn.appendChild(swatch)
 
-    const label = document.createTextNode(TYPE_SHORT[t])
+    const label = document.createElement('span')
+    label.textContent = t
     btn.appendChild(label)
 
     btn.addEventListener('click', () => {

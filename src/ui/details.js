@@ -49,13 +49,10 @@ export function renderDetails(state) {
   ]))
 
   // Row 2: Survey type | Town | Block
-  const typeCell = makeCell('Survey type', '', 'tb-cell-third')
-  const swatch = document.createElement('span')
-  swatch.className = 'type-swatch-inline'
-  swatch.style.backgroundColor = `var(${TYPE_VAR[plan.survey_type]})`
-  const typeText = document.createTextNode(' ' + (TYPE_SHORT[plan.survey_type] || plan.survey_type))
-  typeCell.querySelector('.tb-value').appendChild(swatch)
-  typeCell.querySelector('.tb-value').appendChild(typeText)
+  const typeCell = makeCell('Survey type', TYPE_SHORT[plan.survey_type] || plan.survey_type, 'tb-cell-third')
+  const typeValue = typeCell.querySelector('.tb-value')
+  typeValue.style.color = `var(${TYPE_VAR[plan.survey_type]})`
+  typeValue.style.fontWeight = '600'
 
   grid.appendChild(makeRow([
     typeCell,

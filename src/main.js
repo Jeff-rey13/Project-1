@@ -119,6 +119,7 @@ function activeFilterCount() {
 
 function renderAll() {
   renderResultsBar()
+  renderCsvButton()
   renderFilters(state)
   renderStages(state)
   renderMap(state)
@@ -166,14 +167,38 @@ function renderResultsBar() {
   countEl.textContent = pluralPlans(visible.length)
   el.appendChild(countEl)
 
-  if (visible.length > 0) {
-    const btn = document.createElement('button')
-    btn.className = 'btn-primary'
-    btn.id = 'download-csv'
-    btn.textContent = `Download CSV (${visible.length})`
-    btn.addEventListener('click', () => exportCSV(visible))
-    el.appendChild(btn)
-  }
+  const meta = document.createElement('span')
+  meta.className = 'result-meta'
+  meta.textContent = filterSummary()
+  el.appendChild(meta)
+}
+
+// Reads back the active filters so the strip says what is being shown
+function filterSummary() {
+  const parts = []
+  if (state.server.types.length) parts.push(state.server.types.join(', '))
+  if (state.client.towns.length) parts.push(state.client.towns.join(', '))
+  if (state.client.stages.length) parts.push(state.client.stages.join(', '))
+  if (state.server.query) parts.push(`matching ${state.server.query}`)
+  const sortLabel = state.sort.key === 'survey_date'
+    ? (state.sort.dir === 'desc' ? 'Surveyed, newest first' : 'Surveyed, oldest first')
+    : (state.sort.dir === 'asc' ? 'Plan no., A to Z' : 'Plan no., Z to A')
+  parts.push(`sorted by ${sortLabel}`)
+  return parts.join('   ')
+}
+
+function renderCsvButton() {
+  const wrap = document.getElementById('csv-wrap')
+  wrap.textContent = ''
+  if (state.loading || state.error) return
+  const visible = getVisibleRows()
+  if (visible.length === 0) return
+  const btn = document.createElement('button')
+  btn.className = 'btn-primary'
+  btn.id = 'download-csv'
+  btn.textContent = `Download CSV (${visible.length})`
+  btn.addEventListener('click', () => exportCSV(visible))
+  wrap.appendChild(btn)
 }
 
 async function loadPlans() {
