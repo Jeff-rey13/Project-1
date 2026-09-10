@@ -230,17 +230,7 @@ Two repository settings are required:
 
 These belong under Variables rather than Secrets, because the workflow reads them through the `vars` context.
 
-## Usability test
 
-Three people, no help, timed. Tasks:
-
-1. Find the most recent Recess Area plan in Punggol.
-2. How many Tampines plans are at QC?
-3. Download every Engineering Topo plan from Jurong West surveyed in 2025.
-
-| Person | Task 1 | Task 2 | Task 3 | Where they hesitated |
-|---|---|---|---|---|
-| 1 | | | | |
 | 2 | | | | |
 | 3 | | | | |
 
