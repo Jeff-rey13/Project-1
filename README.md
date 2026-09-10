@@ -4,11 +4,6 @@ Plan Room is a small web app for finding and tracking land survey plans across S
 
 **Live site:** https://Jeff-rey13.github.io/Project-1/
 
-## Screenshots
-
-_Add a desktop screenshot at 1440 px here._
-
-_Add a mobile screenshot at 390 px here._
 
 ## Synthetic data
 
