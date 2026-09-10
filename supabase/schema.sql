@@ -15,12 +15,26 @@ create table public.survey_plans (
   surveyor    text not null,
   file_format text not null check (file_format in ('DWG', 'LAS', 'PDF')),
   lat         double precision not null check (lat between 1.15 and 1.48),
-  lon         double precision not null check (lon between 103.6 and 104.1)
+  lon         double precision not null check (lon between 103.6 and 104.1),
+
+  -- Real address data, present on rows sourced from HDB open data.
+  street      text,
+  postal      text,
+
+  -- Provenance of the location fields (block, town, street, lat, lon):
+  --   'synthetic'  invented by the seed below
+  --   'hdb-onemap' real: HDB Property Information for the block and street,
+  --                OneMap for the coordinates
+  -- The workflow fields (survey_type, status, surveyor, survey_date) are
+  -- simulated either way. No public feed of survey plan workflow exists.
+  source      text not null default 'synthetic'
+                check (source in ('synthetic', 'hdb-onemap'))
 );
 
 create index survey_plans_filters_idx on public.survey_plans (town, survey_type, status);
 create index survey_plans_date_idx    on public.survey_plans (survey_date desc);
 create index survey_plans_geo_idx     on public.survey_plans (lat, lon);
+create index survey_plans_street_idx  on public.survey_plans (street);
 
 -- Security: read-only public access. No insert/update/delete policies exist,
 -- so the public API cannot change data.

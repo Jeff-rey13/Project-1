@@ -60,7 +60,15 @@ export function renderDetails(state) {
     makeCell('Block', plan.block, 'tb-cell-third'),
   ]))
 
-  // Row 3: Surveyed | Surveyor | Format
+  // Row 3: full address, present only on plans with real HDB block data
+  if (plan.street) {
+    const addr = plan.postal
+      ? `${plan.block} ${plan.street}, Singapore ${plan.postal}`
+      : `${plan.block} ${plan.street}`
+    grid.appendChild(makeRow([makeCell('Address', addr, 'tb-cell-full')]))
+  }
+
+  // Row 4: Surveyed | Surveyor | Format
   grid.appendChild(makeRow([
     makeCell('Surveyed', formatDate(plan.survey_date), 'tb-cell-third'),
     makeCell('Surveyor', plan.surveyor, 'tb-cell-third'),

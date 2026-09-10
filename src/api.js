@@ -9,7 +9,7 @@ const clean = (s) => s.replace(/[^A-Za-z0-9 \-]/g, '').trim().slice(0, 50)
 
 export async function fetchPlans({ types, from, to, query, bounds }) {
   let q = supabase.from('survey_plans')
-    .select('plan_id, survey_type, town, block, survey_date, status, surveyor, file_format, lat, lon')
+    .select('plan_id, survey_type, town, block, street, postal, survey_date, status, surveyor, file_format, lat, lon')
     .order('survey_date', { ascending: false })
     .limit(1000)
   if (types.length) q = q.in('survey_type', types)
@@ -20,7 +20,7 @@ export async function fetchPlans({ types, from, to, query, bounds }) {
          .gte('lon', bounds.w).lte('lon', bounds.e)
   }
   const term = clean(query)
-  if (term) q = q.or(`plan_id.ilike."%${term}%",block.ilike."%${term}%"`)
+  if (term) q = q.or(`plan_id.ilike."%${term}%",block.ilike."%${term}%",street.ilike."%${term}%"`)
   const { data, error } = await q
   if (error) throw error
   return data

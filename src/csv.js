@@ -9,12 +9,12 @@ function cell(v) {
 }
 
 export function exportCSV(rows) {
-  const headers = ['Plan no.', 'Type', 'Town', 'Block', 'Surveyed', 'Stage', 'Format', 'Surveyor', 'Lat', 'Lon', 'SVY21 E', 'SVY21 N']
+  const headers = ['Plan no.', 'Type', 'Town', 'Block', 'Street', 'Postal', 'Surveyed', 'Stage', 'Format', 'Surveyor', 'Lat', 'Lon', 'SVY21 E', 'SVY21 N']
   const lines = [headers.join(',')]
   for (const r of rows) {
     const [e, n] = svy21(r.lat, r.lon)
     lines.push([
-      r.plan_id, r.survey_type, r.town, r.block,
+      r.plan_id, r.survey_type, r.town, r.block, r.street, r.postal,
       formatDate(r.survey_date), r.status, r.file_format,
       r.surveyor, r.lat, r.lon, e.toFixed(2), n.toFixed(2)
     ].map(cell).join(','))
