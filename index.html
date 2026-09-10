@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Find and track land survey plans by town, survey type and workflow stage across Singapore." />
+    <title>Plan Room</title>
+  </head>
+  <body>
+    <header class="header" id="header">
+      <span class="wordmark">Plan Room</span>
+      <div class="search-wrap">
+        <label for="search" class="sr-only">Search plans</label>
+        <input
+          id="search"
+          type="search"
+          class="search-input"
+          placeholder="Plan no. or block, e.g. TOP-2025 or Blk 512"
+          maxlength="50"
+          autocomplete="off"
+        />
+      </div>
+    </header>
+
+    <div class="app-layout">
+      <aside class="sidebar" id="sidebar">
+        <section class="filter-section" id="type-filters" aria-label="Survey type filters"></section>
+        <section class="filter-section" id="date-filters" aria-label="Date range filters"></section>
+        <section class="filter-section" id="town-filters" aria-label="Town filters"></section>
+        <div id="clear-filters-wrap"></div>
+        <p class="notice" id="notice-desktop">Synthetic data for demonstration. Not affiliated with HDB.</p>
+      </aside>
+
+      <main class="main-content" id="main-content">
+        <div class="results-bar" id="results-bar"></div>
+        <section class="stages-bar" id="stages-bar" aria-label="Workflow stages"></section>
+        <div class="map-container" id="map-wrap">
+          <div id="map"></div>
+        </div>
+        <section id="table-wrap" aria-label="Survey plans table"></section>
+        <p class="notice notice-mobile" id="notice-mobile">Synthetic data for demonstration. Not affiliated with HDB.</p>
+      </main>
+    </div>
+
+    <div id="details-wrap"></div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+﻿:root {
+  /* Surfaces and ink (contrast checked) */
+  --film: #F2F4F3;
+  --sheet: #FFFFFF;
+  --ink: #1E2B33;
+  --graphite: #56646C;
+  --rule: #D3DADD;
+  --rule-strong: #A9B5BA;
+  --flag: #D81B60;
+
+  /* Survey type colours (topographic map convention, all >= 5:1 on white) */
+  --topo: #8A5220;
+  --lidar: #1F6FB2;
+  --recess: #2F7D4A;
+
+  /* Stage ramp, light to ink, used for stage bars only */
+  --stage-1: #C9D2D6;
+  --stage-2: #A3B0B6;
+  --stage-3: #7D8D95;
+  --stage-4: #56646C;
+  --stage-5: #1E2B33;
+
+  --font: 'Archivo Variable', system-ui, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --radius-control: 4px;
+  --radius-panel: 8px;
+  --radius-chip: 999px;
+  --shadow-float: 0 12px 32px rgb(30 43 51 / 0.18);
+  --shadow-control: 0 1px 2px rgb(30 43 51 / 0.20);
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
